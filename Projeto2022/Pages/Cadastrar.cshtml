@@ -1,0 +1,42 @@
+﻿@page
+@model Projeto2022.Pages.CadastrarModel
+@{
+}
+
+<form asp-page="/Cadastrar" method="post">
+
+  <div class="mb-3">
+    <label asp-for="Nome" class="form-label">Nome:</label>
+    <input asp-for="Nome" class="form-control">
+    <span asp-validation-for="Nome"></span>
+  </div>
+
+    <div class="mb-3">
+    <label asp-for="Email" class="form-label">Email</label>
+    <input asp-for="Email" class="form-control">
+
+  </div>
+
+  <div class="mb-3">
+    <label asp-for="Usuario" class="form-label">Usuário</label>
+    <input asp-for="Usuario" class="form-control">
+    <span asp-validation-for="Usuario"></span>
+
+  </div>
+
+  <div class="mb-3">
+    <label asp-for="Senha" class="form-label">Senha</label>
+    <input asp-page="Senha" class="form-control">
+    <span asp-validation-for="Senha"></span>
+
+  </div>
+
+<div class="form-check form-switch">
+  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+  <label class="form-check-label" for="flexSwitchCheckDefault">Ative essa opção se o Usuário for Admin</label>
+</div>
+
+  <button type="submit" class="btn btn-primary">Cadastrar</button>
+
+
+</form>
