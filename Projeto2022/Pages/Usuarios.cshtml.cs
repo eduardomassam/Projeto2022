@@ -32,7 +32,7 @@ namespace Projeto2022.Pages
                     Admin = reader.GetInt32(5)
                 });
             }
-
+            await conexao.CloseAsync();
         }
 
         public class UsuarioViewModel

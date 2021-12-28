@@ -1,11 +1,10 @@
 ﻿@page
-@model Projeto2022.Pages.CadastrarModel
+@model Projeto2022.Pages.EditarModel
 @{
-    
 }
 
-<form asp-page="/Cadastrar" method="post">
-
+<form asp-page="/Editar" method="post">
+    <input type="hidden" asp-for="Id"/>
   <div class="mb-3">
     <label asp-for="Nome" class="form-label">Nome:</label>
     <input asp-for="Nome" class="form-control">
@@ -25,13 +24,6 @@
 
   </div>
 
-  <div class="mb-3">
-    <label asp-for="Senha" class="form-label">Senha</label>
-    <input asp-for="Senha" class="form-control">
-    <span asp-validation-for="Senha"></span>
-
-  </div>
-
 <div>
 @Html.EditorFor(x => x.Remember)
 <label asp-for="Remember" class="form-label">Marque se for admin</label>
@@ -39,6 +31,6 @@
 
 </div><br /><br />
 
-  <button type="submit" class="btn btn-primary">Cadastrar</button>
+  <button type="submit" class="btn btn-primary">Atualizar</button>
 
 </form>

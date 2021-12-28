@@ -25,7 +25,6 @@ namespace Projeto2022.Pages
         public string Email { get; set; }
 
 
-        [Required(ErrorMessage = "É obrigratório informar o se é Admin ou Não")]
         [BindProperty(SupportsGet = true)]
         public bool Remember { get; set; }
         public int ControlaAcesso { get; set; }
