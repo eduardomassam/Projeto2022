@@ -11,6 +11,7 @@ builder.Services.AddAuthentication("Identity.Login")
         config.AccessDeniedPath = "/Home";
         config.ExpireTimeSpan = TimeSpan.FromHours(1);
     });
+builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
@@ -33,5 +34,6 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapRazorPages();
 
 app.Run();

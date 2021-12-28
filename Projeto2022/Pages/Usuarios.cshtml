@@ -1,0 +1,48 @@
+﻿@page
+@model Projeto2022.Pages.UsuariosModel
+@{
+}
+
+@if (Model.Usuarios.Any())
+{
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Usuário</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Admin</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var usuario in Model.Usuarios)
+            {
+                <tr>
+                    <td>@usuario.Id</td>
+                    <td>@usuario.Usuario</td>
+                    <td>@usuario.Nome</td>
+                    <td>@usuario.Email</td>
+                    @if(@usuario.Admin == 1)
+                    {
+                    <td>Sim</td>                      
+                    }
+                    else
+                    {
+                        <td>Não</td>   
+                    }
+
+                    <td>
+                        <a class="btn btn-warning">Editar</a>
+                        <a class="btn btn-danger">Remover</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h2 class="text-center">Nenhum usuário encontrado</h2>
+}

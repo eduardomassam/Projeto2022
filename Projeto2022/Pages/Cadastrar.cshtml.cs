@@ -7,11 +7,11 @@ namespace Projeto2022.Pages
 {
     public class CadastrarModel : PageModel
     {
-        [Required(ErrorMessage ="É obrigratório informar o Nome")]
+        [Required(ErrorMessage = "É obrigratório informar o Nome")]
         [BindProperty(SupportsGet = true)]
         public string Nome { get; set; }
 
-        [Required(ErrorMessage ="É obrigratório informar o Usuário")]
+        [Required(ErrorMessage = "É obrigratório informar o Usuário")]
         [BindProperty(SupportsGet = true)]
         public string Usuario { get; set; }
 
@@ -27,20 +27,29 @@ namespace Projeto2022.Pages
 
         [Required(ErrorMessage = "É obrigratório informar o se é Admin ou Não")]
         [BindProperty(SupportsGet = true)]
+        public bool Remember { get; set; }
         public int ControlaAcesso { get; set; }
+        
 
         public void OnGet()
         {
 
         }
 
-        public async Task <IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync()
         {
             SqlConnection conexao = new SqlConnection("server=localhost;database=mySkill;uid=usuario;password=senha");
             await conexao.OpenAsync();
+            
+            ControlaAcesso = 0;
+            if(Remember)
+            {
+                ControlaAcesso = 1;
+            }
+         
 
             SqlCommand cmd = conexao.CreateCommand();
-            cmd.CommandText = $"INSERT * from Usuarios (usuario,senha,nome,email,controlaAcesso) VALUES ('{Usuario}'), '{Senha}','{Nome}','{Email}','{ControlaAcesso}'";
+            cmd.CommandText = $"INSERT INTO Usuarios (usuario,senha,nome,email,controlaAcesso) VALUES ('{Usuario}' , '{Senha}' , '{Nome}' , '{Email}' , '{ControlaAcesso}')";
 
             await cmd.ExecuteReaderAsync();
 
