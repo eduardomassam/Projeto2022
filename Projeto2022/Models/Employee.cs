@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -18,9 +19,10 @@ defeitos nvarchar(1000),
 qualidades nvarchar(1000),
 )
     */
-
+    [Index(nameof(Employee.DasID),IsUnique = true)]
     public class Employee
     {
+        
         //PK do funcionario
         [Key]
         public int EmployeeID { get; set; }

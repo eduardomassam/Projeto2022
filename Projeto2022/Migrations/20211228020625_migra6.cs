@@ -4,7 +4,7 @@
 
 namespace Projeto2022.Migrations
 {
-    public partial class Migra1 : Migration
+    public partial class migra6 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -49,7 +49,7 @@ namespace Projeto2022.Migrations
                     senha = table.Column<string>(type: "nvarchar(1000)", nullable: false),
                     nome = table.Column<string>(type: "varchar(50)", nullable: false),
                     email = table.Column<string>(type: "varchar(100)", nullable: false),
-                    controlaSkill = table.Column<int>(type: "int", nullable: false)
+                    controlaAcesso = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -85,6 +85,18 @@ namespace Projeto2022.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Employees_DasID",
+                table: "Employees",
+                column: "DasID",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Skills_SkillName",
+                table: "Skills",
+                column: "SkillName",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_SkillsFuncionarios_EmployeeID",
                 table: "SkillsFuncionarios",
                 column: "EmployeeID");
@@ -93,6 +105,12 @@ namespace Projeto2022.Migrations
                 name: "IX_SkillsFuncionarios_SkillID",
                 table: "SkillsFuncionarios",
                 column: "SkillID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Usuarios_usuario",
+                table: "Usuarios",
+                column: "usuario",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

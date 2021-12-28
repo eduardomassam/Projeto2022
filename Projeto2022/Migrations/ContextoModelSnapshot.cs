@@ -51,6 +51,9 @@ namespace Projeto2022.Migrations
 
                     b.HasKey("EmployeeID");
 
+                    b.HasIndex("DasID")
+                        .IsUnique();
+
                     b.ToTable("Employees");
                 });
 
@@ -70,6 +73,9 @@ namespace Projeto2022.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("SkillID");
+
+                    b.HasIndex("SkillName")
+                        .IsUnique();
 
                     b.ToTable("Skills");
                 });
@@ -113,7 +119,7 @@ namespace Projeto2022.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idLogin"), 1L, 1);
 
-                    b.Property<int>("controlaSkill")
+                    b.Property<int>("controlaAcesso")
                         .HasColumnType("int");
 
                     b.Property<string>("email")
@@ -133,6 +139,9 @@ namespace Projeto2022.Migrations
                         .HasColumnType("varchar(50)");
 
                     b.HasKey("idLogin");
+
+                    b.HasIndex("usuario")
+                        .IsUnique();
 
                     b.ToTable("Usuarios");
                 });

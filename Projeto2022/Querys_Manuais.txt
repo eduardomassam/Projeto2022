@@ -34,7 +34,16 @@ email varchar(100) UNIQUE,
 isAcessoConfig BIT not null
 )
 
-select * from skills
-select * from funcionario
-select * from skillsFuncionario
-select * from usuario
+select * from Skills
+select * from Employees
+select * from SkillsFuncionarios
+select * from Usuarios
+
+
+create login usuario with password='senha';
+create user usuario from login usuario;
+
+exec sp_addrolemember 'DB_DATAREADER','usuario';
+exec sp_addrolemember 'DB_DATAWRITER','usuario';
+
+insert into Usuarios values ('usuario1','senha1','Eduardo','',0)

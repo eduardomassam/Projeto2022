@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -15,6 +16,8 @@ nomeSkill varchar(50) not null,
 controlaSkill int not null
 )   
     */
+    [Index(nameof(Skill.SkillName), IsUnique = true)]
+
     public class Skill
     {
         //Chave primeira skillId

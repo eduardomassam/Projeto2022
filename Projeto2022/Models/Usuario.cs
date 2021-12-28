@@ -20,6 +20,8 @@ isAcessoConfig BIT not null
 )
  
   */
+    [Index(nameof(Usuario.usuario), IsUnique = true)]
+
     public class Usuario
     {
         //Chave primaria idLogin
@@ -50,10 +52,10 @@ isAcessoConfig BIT not null
         [DisplayName("Email")]
         public string email { get; set; }
 
-        //Coluna controla skill (pra nao ter duplicidade de mesma skill com senioridade diferente)
+        //Controla acesso Admin ou Não Admin
         [Column(TypeName = "int")]
         [Required(ErrorMessage = "Esse campo de é de preechimento obrigatório")]
-        [DisplayName("Controlador da Skill")]
-        public int controlaSkill { get; set; }
+        [DisplayName("Controlador de acesso")]
+        public int controlaAcesso { get; set; }
     }
 }
