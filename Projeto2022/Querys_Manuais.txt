@@ -31,7 +31,7 @@ usuario varchar(50) not null UNIQUE,
 senha nvarchar(1000) not null,
 nome varchar(50) not null,
 email varchar(100) UNIQUE,
-isAcessoConfig BIT not null
+isAcessoConfig int not null
 )
 
 select * from Skills
