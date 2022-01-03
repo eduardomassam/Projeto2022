@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Projeto.Models
 {
     /*
-create table skills(
+create table Skills(
 skillId int primary key not null identity,
 nomeSkill varchar(50) not null,
 controlaSkill int not null
@@ -30,11 +30,11 @@ controlaSkill int not null
         [DisplayName("Nome da Skill")]
         public string SkillName { get; set; }
 
-        //Coluna controla skill (pra nao ter duplicidade de mesma skill com senioridade diferente)
-        [Column(TypeName = "int")]
-        [Required(ErrorMessage = "Esse campo de é de preechimento obrigatório")]
-        [DisplayName("Controlador da Skill")]
-        public int controlaSkill { get; set; }
+        ////Coluna controla skill (pra nao ter duplicidade de mesma skill com senioridade diferente)
+        //[Column(TypeName = "int")]
+        //[Required(ErrorMessage = "Esse campo de é de preechimento obrigatório")]
+        //[DisplayName("Controlador da Skill")]
+        //public int controlaSkill { get; set; }
 
     }
 }

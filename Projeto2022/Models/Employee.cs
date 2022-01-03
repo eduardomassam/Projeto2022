@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Projeto.Models
 {
     /*
-create table funcionario(
+create table Employees(
 id int primary key not null identity,
 dasID int not null UNIQUE,
 nome varchar(90) not null,

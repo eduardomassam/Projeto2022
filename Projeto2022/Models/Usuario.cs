@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Projeto.Models
 {
     /*
-create table usuario(
+create table Usuarios(
 idLogin int primary key not null identity,
 usuario varchar(50) not null UNIQUE,
 senha nvarchar(1000) not null,

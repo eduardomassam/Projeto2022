@@ -11,8 +11,8 @@ using Projeto2022;
 namespace Projeto2022.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20211228020625_migra6")]
-    partial class migra6
+    [Migration("20220103045930_migra1.0")]
+    partial class migra10
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -71,9 +71,6 @@ namespace Projeto2022.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(50)");
 
-                    b.Property<int>("controlaSkill")
-                        .HasColumnType("int");
-
                     b.HasKey("SkillID");
 
                     b.HasIndex("SkillName")
@@ -93,6 +90,9 @@ namespace Projeto2022.Migrations
                     b.Property<int>("EmployeeID")
                         .HasColumnType("int");
 
+                    b.Property<int>("SenioridadeId")
+                        .HasColumnType("int");
+
                     b.Property<int>("SkillID")
                         .HasColumnType("int");
 
@@ -107,6 +107,8 @@ namespace Projeto2022.Migrations
                     b.HasKey("idSkillFuncionario");
 
                     b.HasIndex("EmployeeID");
+
+                    b.HasIndex("SenioridadeId");
 
                     b.HasIndex("SkillID");
 
@@ -148,11 +150,34 @@ namespace Projeto2022.Migrations
                     b.ToTable("Usuarios");
                 });
 
+            modelBuilder.Entity("Projeto2022.Models.Senioridade", b =>
+                {
+                    b.Property<int>("SenioridadeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SenioridadeId"), 1L, 1);
+
+                    b.Property<string>("SenioridadeName")
+                        .IsRequired()
+                        .HasColumnType("varchar(20)");
+
+                    b.HasKey("SenioridadeId");
+
+                    b.ToTable("Senioridade");
+                });
+
             modelBuilder.Entity("Projeto.Models.SkillsFuncionario", b =>
                 {
                     b.HasOne("Projeto.Models.Employee", "fk_idFuncionario")
                         .WithMany()
                         .HasForeignKey("EmployeeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Projeto2022.Models.Senioridade", "fk_idSenioridade")
+                        .WithMany()
+                        .HasForeignKey("SenioridadeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -163,6 +188,8 @@ namespace Projeto2022.Migrations
                         .IsRequired();
 
                     b.Navigation("fk_idFuncionario");
+
+                    b.Navigation("fk_idSenioridade");
 
                     b.Navigation("fk_idSkill");
                 });

@@ -4,7 +4,7 @@
 
 namespace Projeto2022.Migrations
 {
-    public partial class migra6 : Migration
+    public partial class migra10 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -26,13 +26,25 @@ namespace Projeto2022.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Senioridade",
+                columns: table => new
+                {
+                    SenioridadeId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SenioridadeName = table.Column<string>(type: "varchar(20)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Senioridade", x => x.SenioridadeId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Skills",
                 columns: table => new
                 {
                     SkillID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    SkillName = table.Column<string>(type: "varchar(50)", nullable: false),
-                    controlaSkill = table.Column<int>(type: "int", nullable: false)
+                    SkillName = table.Column<string>(type: "varchar(50)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -65,7 +77,8 @@ namespace Projeto2022.Migrations
                     tempExp = table.Column<string>(type: "varchar(2)", nullable: false),
                     observacoes = table.Column<string>(type: "nvarchar(1000)", nullable: false),
                     SkillID = table.Column<int>(type: "int", nullable: false),
-                    EmployeeID = table.Column<int>(type: "int", nullable: false)
+                    EmployeeID = table.Column<int>(type: "int", nullable: false),
+                    SenioridadeId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -75,6 +88,12 @@ namespace Projeto2022.Migrations
                         column: x => x.EmployeeID,
                         principalTable: "Employees",
                         principalColumn: "EmployeeID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_SkillsFuncionarios_Senioridade_SenioridadeId",
+                        column: x => x.SenioridadeId,
+                        principalTable: "Senioridade",
+                        principalColumn: "SenioridadeId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_SkillsFuncionarios_Skills_SkillID",
@@ -102,6 +121,11 @@ namespace Projeto2022.Migrations
                 column: "EmployeeID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_SkillsFuncionarios_SenioridadeId",
+                table: "SkillsFuncionarios",
+                column: "SenioridadeId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_SkillsFuncionarios_SkillID",
                 table: "SkillsFuncionarios",
                 column: "SkillID");
@@ -123,6 +147,9 @@ namespace Projeto2022.Migrations
 
             migrationBuilder.DropTable(
                 name: "Employees");
+
+            migrationBuilder.DropTable(
+                name: "Senioridade");
 
             migrationBuilder.DropTable(
                 name: "Skills");

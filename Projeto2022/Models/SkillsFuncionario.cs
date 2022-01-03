@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Projeto2022.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -9,14 +10,16 @@ using System.Threading.Tasks;
 namespace Projeto.Models
 {
     /*
-create table skillsFuncionario(
+create table SkillsFuncionario(
 idSkillFuncionario int primary key not null identity,
 tempoExp int,
 observacoes varchar(1000),
 fk_idSkill integer not null,
 fk_idFuncionario integer not null,
+fk_idSenioridade integer not null,
 foreign key (fk_idSkill) references skills(skillId),
-foreign key (fk_idFuncionario) references funcionario(id)
+foreign key (fk_idFuncionario) references funcionario(id),
+foreign key (fk_idSenioridade) references Senioridade(SenioridadeId)
 )
     */
 
@@ -48,6 +51,13 @@ foreign key (fk_idFuncionario) references funcionario(id)
         [DisplayName("FK do id da tabela Funcionario")]
         [ForeignKey("EmployeeID")]
         public Employee fk_idFuncionario { get; set; }
+
+        //Coluna FK de id Senioridade
+        [Column(TypeName = "int")]
+        [DisplayName("FK do id da tabela Senioridade")]
+        [ForeignKey("SenioridadeId")]
+        public Senioridade fk_idSenioridade { get; set; }
+
 
     }
 }

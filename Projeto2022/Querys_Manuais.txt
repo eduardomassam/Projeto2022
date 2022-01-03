@@ -1,12 +1,17 @@
 ﻿create database mySkill
 
-create table skills(
+create table Skills(
 skillId int primary key not null identity,
 nomeSkill varchar(50) not null,
 controlaSkill int not null
 )
 
-create table funcionario(
+create table Senioridade(
+SenioridadeId int primary key not null identity,
+SenioridadeName varchar(20) not null
+)
+
+create table Employees(
 id int primary key not null identity,
 dasID int not null UNIQUE,
 nome varchar(90) not null,
@@ -15,17 +20,19 @@ defeitos nvarchar(1000),
 qualidades nvarchar(1000),
 )
 
-create table skillsFuncionario(
+create table SkillsFuncionario(
 idSkillFuncionario int primary key not null identity,
 tempoExp int,
 observacoes varchar(1000),
 fk_idSkill integer not null,
 fk_idFuncionario integer not null,
+fk_idSenioridade integer not null,
 foreign key (fk_idSkill) references skills(skillId),
-foreign key (fk_idFuncionario) references funcionario(id)
+foreign key (fk_idFuncionario) references funcionario(id),
+foreign key (fk_idSenioridade) references Senioridade(SenioridadeId)
 )
 
-create table usuario(
+create table Usuarios(
 idLogin int primary key not null identity,
 usuario varchar(50) not null UNIQUE,
 senha nvarchar(1000) not null,
@@ -38,7 +45,7 @@ select * from Skills
 select * from Employees
 select * from SkillsFuncionarios
 select * from Usuarios
-
+select * from Senioridade
 
 create login usuario with password='senha';
 create user usuario from login usuario;

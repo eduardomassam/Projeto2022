@@ -1,0 +1,18 @@
+﻿@page
+@model Projeto2022.Pages.CadastrarSkillModel
+@{
+}
+
+<form asp-page="/CadastrarSkill" method="post">
+
+  <div class="mb-3">
+    <label asp-for="Nome" class="form-label">Nome:</label>
+    <input asp-for="Nome" class="form-control">
+    <span asp-validation-for="Nome"></span>
+  </div>
+
+<br /><br />
+
+  <button type="submit" class="btn btn-primary">Cadastrar</button>
+
+</form>
