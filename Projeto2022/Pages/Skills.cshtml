@@ -1,0 +1,35 @@
+﻿@page
+@model Projeto2022.Pages.SkillsModel
+@{
+}
+
+@if (Model.Skills.Any())
+{
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>     
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var usuario in Model.Skills)
+            {
+                <tr>
+                    <td>@usuario.Id</td>
+                    <td>@usuario.Nome</td>
+
+                    <td>
+                        <a asp-page="/EditarSkill" asp-route-Id="@usuario.Id" class="btn btn-warning">Editar</a>
+                        <a asp-page="/EditarSkill" asp-page-handler="Apagar" asp-route-Id="@usuario.Id" class="btn btn-danger">Remover</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h2 class="text-center">Nenhuma Skill encontrado</h2>
+}

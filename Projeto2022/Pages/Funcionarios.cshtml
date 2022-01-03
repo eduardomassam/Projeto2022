@@ -1,0 +1,44 @@
+﻿@page
+@model Projeto2022.Pages.FuncionariosModel
+@{
+}
+
+@if (Model.Funcionarios.Any())
+{
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>DasID</th>
+                <th>Email</th>
+                <th>Qualidades</th>
+                <th>Defeitos</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var usuario in Model.Funcionarios)
+            {
+                <tr>
+                    <td>@usuario.Id</td>
+                    <td>@usuario.Nome</td>
+                    <td>@usuario.Email</td>
+                    <td>@usuario.DasID</td>
+                    <td>@usuario.Qualidades</td>
+                    <td>@usuario.Defeitos</td>
+               
+
+                    <td>
+                        <a asp-page="/EditarFuncionario" asp-route-Id="@usuario.Id" class="btn btn-warning">Editar</a>
+                        <a asp-page="/EditarFuncionario" asp-page-handler="Apagar" asp-route-Id="@usuario.Id" class="btn btn-danger">Remover</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h2 class="text-center">Nenhum Funcionário encontrado</h2>
+}
