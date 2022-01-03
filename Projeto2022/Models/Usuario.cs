@@ -44,6 +44,8 @@ isAcessoConfig int not null
         //Coluna nome
         [Column(TypeName = "varchar(50)")]
         [Required(ErrorMessage = "Esse campo de é de preechimento obrigatório")]
+        
+
         [DisplayName("Nome")]
         public string nome { get; set; }
 

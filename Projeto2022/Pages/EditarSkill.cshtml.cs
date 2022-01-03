@@ -11,7 +11,8 @@ namespace Projeto2022.Pages
         [BindProperty(SupportsGet = true)]
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "É obrigratório informar a Skill")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Esse campo de é de preechimento obrigatório")]
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         [BindProperty(SupportsGet = true)]
         public string Nome { get; set; }
 

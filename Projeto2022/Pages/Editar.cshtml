@@ -3,7 +3,8 @@
 @{
 }
 
-<form asp-page="/Editar" method="post">
+<form asp-page="/Editar" method="post" data-ajax="true" data-ajax-method="post"
+    data-ajax-success="Sucesso" data-ajax-failure="Falha">
     <input type="hidden" asp-for="Id"/>
   <div class="mb-3">
     <label asp-for="Nome" class="form-label">Nome:</label>

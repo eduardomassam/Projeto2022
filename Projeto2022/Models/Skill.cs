@@ -26,7 +26,8 @@ controlaSkill int not null
 
         //Coluna nome da Skill
         [Column(TypeName = "varchar(50)")]
-        [Required(ErrorMessage = "Esse campo de é de preechimento obrigatório")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Esse campo de é de preechimento obrigatório")]
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         [DisplayName("Nome da Skill")]
         public string SkillName { get; set; }
 

@@ -8,7 +8,8 @@ namespace Projeto2022.Pages
 {
     public class CadastrarSkillModel : PageModel
     {
-        [Required(ErrorMessage = "É obrigratório informar o Nome da skill")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Esse campo de é de preechimento obrigatório")]
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         [BindProperty(SupportsGet = true)]
         public string Nome { get; set; }
         public List<Skill> Skills { get; set; }
@@ -19,7 +20,7 @@ namespace Projeto2022.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
-            SqlConnection conexao = new SqlConnection("server=localhost;database=mySkill;uid=usuario;password=senha");
+            SqlConnection conexao = new SqlConnection("server=localhost;database=mySkill;uid=usuario;password=senha;");
             await conexao.OpenAsync();
 
             SqlCommand cmd = conexao.CreateCommand();
@@ -38,29 +39,39 @@ namespace Projeto2022.Pages
                     SkillID = reader.GetInt32(0),
                     SkillName = reader.GetString(1),
                 });
+
             }
 
             foreach (var Skill in Skills)
             {
-                var isExisteTec = Skill.SkillName.ToUpper().Equals(Nome.ToUpper());
 
+                var isExisteTec = Skill.SkillName.ToUpper().Equals(Nome.ToUpper());
                 if (isExisteTec)
                 {
                     await conexao.CloseAsync();
-                    return new JsonResult(new { Msg = "Técnologia já existe" });
+                    return new JsonResult(new { Msg = "Técnologia já existe, portanto nada foi cadastrado" });
                 }
+
             }
+
+            if (String.IsNullOrEmpty(Nome))
+            {
+                await conexao.CloseAsync();
+                throw new Exception("Error");
+                return new JsonResult(new { Msg = "Campo deve ser preenchido" });
+            }
+
+
             await conexao.CloseAsync();
             await conexao.OpenAsync();
 
-           
             cmd.CommandText = $"INSERT INTO Skills (SkillName) VALUES ('{Nome}')";
-
-
-
             await cmd.ExecuteReaderAsync();
+
             await conexao.CloseAsync();
+
             return new JsonResult(new { Msg = "Skill cadastrada com sucesso" });
+
         }
 
     }

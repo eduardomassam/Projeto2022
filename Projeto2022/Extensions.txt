@@ -2,6 +2,9 @@
 Microsoft.EntityFrameworkCore.SqlServer
 Microsoft.EntityFrameworkCore.Tools
 
+client side: jquery-ajax-unobtrusive
+client side: sweetalert2
+
 Add-Migration "NomeDaMigracao"
 
 Update-DataBase

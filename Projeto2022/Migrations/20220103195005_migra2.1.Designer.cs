@@ -11,8 +11,8 @@ using Projeto2022;
 namespace Projeto2022.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20220103045930_migra1.0")]
-    partial class migra10
+    [Migration("20220103195005_migra2.1")]
+    partial class migra21
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

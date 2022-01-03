@@ -3,7 +3,8 @@
 @{
 }
 
-<form asp-page="/CadastrarSkill" method="post">
+<form asp-page="/CadastrarSkill" method="post" data-ajax="true" data-ajax-method="post"
+    data-ajax-success="Sucesso" data-ajax-failure="Falha">
 
   <div class="mb-3">
     <label asp-for="Nome" class="form-label">Nome:</label>
