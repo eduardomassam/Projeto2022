@@ -7,19 +7,19 @@
     data-ajax-success="Sucesso" data-ajax-failure="Falha">
     <input type="hidden" asp-for="Id"/>
   <div class="mb-3">
-    <label asp-for="Nome" class="form-label">Nome:</label>
+    <label asp-for="Nome" class="form-label">Nome do Usuário:</label>
     <input asp-for="Nome" class="form-control">
     <span asp-validation-for="Nome"></span>
   </div>
 
     <div class="mb-3">
-    <label asp-for="Email" class="form-label">Email</label>
+    <label asp-for="Email" class="form-label">Email do Usuário:</label>
     <input asp-for="Email" class="form-control">
 
   </div>
 
   <div class="mb-3">
-    <label asp-for="Usuario" class="form-label">Usuário</label>
+    <label asp-for="Usuario" class="form-label">Login do Usuário: </label>
     <input asp-for="Usuario" class="form-control">
     <span asp-validation-for="Usuario"></span>
 
@@ -27,7 +27,7 @@
 
 <div>
 @Html.EditorFor(x => x.Remember)
-<label asp-for="Remember" class="form-label">Marque se for admin</label>
+<label asp-for="Remember" class="form-label">Marque se for admin:</label>
 <span asp-validation-for="Remember"></span>
 
 </div><br /><br />

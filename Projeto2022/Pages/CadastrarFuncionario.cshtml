@@ -3,10 +3,11 @@
 @{
 }
 
-<form asp-page="/CadastrarFuncionario" method="post">
+<form asp-page="/CadastrarFuncionario" method="post" method="post" data-ajax="true" data-ajax-method="post"
+    data-ajax-success="Sucesso" data-ajax-failure="Falha">
 
   <div class="mb-3">
-    <label asp-for="Nome" class="form-label">Nome:</label>
+    <label asp-for="Nome" class="form-label">Nome do novo Funcionário:</label>
     <input asp-for="Nome" class="form-control">
     <span asp-validation-for="Nome"></span>
   </div>
@@ -18,18 +19,18 @@
   </div>
 
     <div class="mb-3">
-    <label asp-for="Email" class="form-label">Email</label>
+    <label asp-for="Email" class="form-label">Email do Funcionário:</label>
     <input asp-for="Email" class="form-control">
 
   </div>
 
   <div class="mb-3">
-    <label asp-for="Qualidades" class="form-label">Qualidades</label>
+    <label asp-for="Qualidades" class="form-label">Qualidades:</label>
     <input asp-for="Qualidades" class="form-control">
   </div>
 
   <div class="mb-3">
-    <label asp-for="Defeitos" class="form-label">Defeitos</label>
+    <label asp-for="Defeitos" class="form-label">Defeitos:</label>
     <input asp-for="Defeitos" class="form-control">
   </div>
 

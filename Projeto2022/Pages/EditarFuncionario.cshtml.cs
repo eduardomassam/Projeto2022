@@ -60,6 +60,14 @@ namespace Projeto2022.Pages
             await conexao.OpenAsync();
 
             SqlCommand cmd = conexao.CreateCommand();
+
+            if (String.IsNullOrEmpty(Nome) || String.IsNullOrEmpty(DasID))
+            {
+                await conexao.CloseAsync();
+                throw new Exception("Error");
+                return new JsonResult(new { Msg = "Campo deve ser preenchido" });
+            }
+
             cmd.CommandText = $"UPDATE Employees SET DasID = '{DasID}', FullName = '{Nome}', email = '{Email}', defeitos = '{Defeitos}', qualidades = '{Qualidades}' WHERE EmployeeID = {Id}";
 
             await cmd.ExecuteReaderAsync();

@@ -48,6 +48,14 @@ namespace Projeto2022.Pages
          
 
             SqlCommand cmd = conexao.CreateCommand();
+
+            if (String.IsNullOrEmpty(Nome) || String.IsNullOrEmpty(Usuario) || Senha == null)
+            {
+                await conexao.CloseAsync();
+                throw new Exception("Error");
+                return new JsonResult(new { Msg = "Campo deve ser preenchido" });
+            }
+
             cmd.CommandText = $"INSERT INTO Usuarios (usuario,senha,nome,email,controlaAcesso) VALUES ('{Usuario}' , '{Senha}' , '{Nome}' , '{Email}' , '{ControlaAcesso}')";
 
             await cmd.ExecuteReaderAsync();

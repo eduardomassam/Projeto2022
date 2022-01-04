@@ -40,6 +40,13 @@ namespace Projeto2022.Pages
             SqlConnection conexao = new SqlConnection("server=localhost;database=mySkill;uid=usuario;password=senha");
             await conexao.OpenAsync();
 
+            if (String.IsNullOrEmpty(Nome))
+            {
+                await conexao.CloseAsync();
+                throw new Exception("Error");
+                return new JsonResult(new { Msg = "Campo deve ser preenchido" });
+            }
+
             SqlCommand cmd = conexao.CreateCommand();
             cmd.CommandText = $"UPDATE Skills SET SkillName = '{Nome}' WHERE SkillID = {Id}";
            
