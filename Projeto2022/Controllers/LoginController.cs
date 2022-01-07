@@ -7,14 +7,20 @@ namespace Projeto2022.Controllers
 {
     public class LoginController : Controller
     {
+
         public IActionResult Index()
         {
             if(User.Identity.IsAuthenticated)
             {
-                return Json(new { Msg = "Usuário já logado" });
+                //return Json(new { Msg = "Usuário já logado" });
             }
             return View();
+            
         }
+
+
+
+
         [HttpPost]
         public async Task<IActionResult> Logar(string username, string senha, bool manterlogado)
         {
@@ -32,6 +38,7 @@ namespace Projeto2022.Controllers
             {
                 int usuarioId = reader.GetInt32(0);
                 string nome = reader.GetString(1);
+                
 
                 List<Claim> direitosAcesso = new List<Claim>
                 {
@@ -48,13 +55,12 @@ namespace Projeto2022.Controllers
                         IsPersistent = manterlogado,
                         ExpiresUtc = DateTime.Now.AddDays(1)
                     }) ;
-
-
-                return Json(new { Msg = "Usuário logado com sucesso" });
+      
+                return Json(new { logado = "Usuário logado com sucesso" });
             }
 
+            return Json(new { naologado = "Usuário não encontrado, verifique as credenciais" });
 
-            return Json(new { Msg = "Usuário não encontrado, verifique as credenciais" });
         }
 
         public async Task<IActionResult> Logout()

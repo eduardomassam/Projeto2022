@@ -28,6 +28,12 @@ namespace Projeto2022.Pages
 
             SqlDataReader reader = cmd.ExecuteReader();
 
+            if (String.IsNullOrEmpty(Nome))
+            {
+                await conexao.CloseAsync();
+                return new JsonResult(new { vazio = "Verifique os campos obrigatórios" });
+            }
+
             //Iniciando a lista como empty
             Skills = new List<Skill>();
 
@@ -49,18 +55,10 @@ namespace Projeto2022.Pages
                 if (isExisteTec)
                 {
                     await conexao.CloseAsync();
-                    return new JsonResult(new { Msg = "Técnologia já existe, portanto nada foi cadastrado" });
+                    return new JsonResult(new { repetido = "Técnologia já existe, portanto nada foi cadastrado" });
                 }
 
-            }
-
-            if (String.IsNullOrEmpty(Nome))
-            {
-                await conexao.CloseAsync();
-                throw new Exception("Error");
-                return new JsonResult(new { Msg = "Campo deve ser preenchido" });
-            }
-
+            }     
 
             await conexao.CloseAsync();
             await conexao.OpenAsync();

@@ -13,7 +13,6 @@ namespace Projeto.Models
 create table Skills(
 skillId int primary key not null identity,
 nomeSkill varchar(50) not null,
-controlaSkill int not null
 )   
     */
     [Index(nameof(Skill.SkillName), IsUnique = true)]

@@ -27,8 +27,8 @@ namespace Projeto2022.Pages
                 {
                     Id = reader.GetInt32(0),
                     Nome = reader.GetString(1),
-                    DasID = reader.GetString(2),
-                    Email = reader.GetString(3),
+                    DasID = reader.GetString(3),
+                    Email = reader.GetString(2),
                     Defeitos = reader.GetString(4),
                     Qualidades = reader.GetString(5),
                 });

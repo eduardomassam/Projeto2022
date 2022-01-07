@@ -15,7 +15,8 @@
               <h3 class="login-heading mb-4">Efetue seu Login!</h3>
 
               <!-- Sign In Form -->
-              <form asp-controller="Login" asp-action="Logar" metodh="post">
+              <form asp-controller="Login" asp-action="Logar" method="post" data-ajax="true" data-ajax-method="post"
+    data-ajax-success="Sucesso" data-ajax-failure="Falha">
                 <div class="form-floating mb-3">
                   <input type="text" class="form-control" id="username" name="username" placeholder="Login">
                   <label for="username">Digite seu usuário:</label>
@@ -33,7 +34,7 @@
                 </div>
 
                 <div class="d-grid">
-                  <button class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2" type="submit">Logar</button>
+                  <button class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2" type="submit" >Logar</button>
                  
                 </div>
 

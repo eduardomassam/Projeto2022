@@ -68,15 +68,14 @@ namespace Projeto2022.Pages
             if (String.IsNullOrEmpty(Nome) || String.IsNullOrEmpty(Usuario))
             {
                 await conexao.CloseAsync();
-                throw new Exception("Error");
-                return new JsonResult(new { Msg = "Campo deve ser preenchido" });
+                return new JsonResult(new { vazio = "Campo deve ser preenchido" });
             }
 
             cmd.CommandText = $"UPDATE Usuarios SET usuario = '{Usuario}', nome = '{Nome}', email = '{Email}', controlaAcesso = {ControlaAcesso} WHERE idLogin = {Id}";
 
             await cmd.ExecuteReaderAsync();
 
-            return new JsonResult(new { Msg = "Usuário Editado com sucesso" });
+            return new JsonResult(new { usereditado = "Usuário Editado com sucesso" });
 
         }
 
@@ -90,7 +89,7 @@ namespace Projeto2022.Pages
 
             await cmd.ExecuteReaderAsync();
 
-            return new JsonResult(new { Msg = "Usuário Removido com sucesso" });
+            return new JsonResult(new { userremovido = "Usuário Removido com sucesso" });
         }
     }
 }

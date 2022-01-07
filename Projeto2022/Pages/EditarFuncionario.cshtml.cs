@@ -24,10 +24,10 @@ namespace Projeto2022.Pages
 
 
         [BindProperty(SupportsGet = true)]
-        public string Qualidades { get; set; }
+        public string Defeitos { get; set; }
 
         [BindProperty(SupportsGet = true)]
-        public string Defeitos { get; set; }
+        public string Qualidades { get; set; }
 
         public async Task OnGet()
         {
@@ -64,15 +64,14 @@ namespace Projeto2022.Pages
             if (String.IsNullOrEmpty(Nome) || String.IsNullOrEmpty(DasID))
             {
                 await conexao.CloseAsync();
-                throw new Exception("Error");
-                return new JsonResult(new { Msg = "Campo deve ser preenchido" });
+                return new JsonResult(new { vazio = "Campo deve ser preenchido" });
             }
 
-            cmd.CommandText = $"UPDATE Employees SET DasID = '{DasID}', FullName = '{Nome}', email = '{Email}', defeitos = '{Defeitos}', qualidades = '{Qualidades}' WHERE EmployeeID = {Id}";
+            cmd.CommandText = $"UPDATE Employees SET FullName = '{Nome}', DasID = '{DasID}', email = '{Email}', defeitos = '{Defeitos}', qualidades = '{Qualidades}' WHERE EmployeeID = {Id}";
 
             await cmd.ExecuteReaderAsync();
 
-            return new JsonResult(new { Msg = "Funcionário Editado com sucesso" });
+            return new JsonResult(new { funcionarioeditado = "Funcionário Editado com sucesso" });
 
         }
 
@@ -86,7 +85,7 @@ namespace Projeto2022.Pages
 
             await cmd.ExecuteReaderAsync();
 
-            return new JsonResult(new { Msg = "Funcionário Removido com sucesso" });
+            return new JsonResult(new { funcionarioremovido = "Funcionário Removido com sucesso" });
         }
     }
 }

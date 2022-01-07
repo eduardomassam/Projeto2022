@@ -10,7 +10,7 @@
 
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Projeto2022.styles.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/lib/sweetalert2/dist/sweetalert2.min.css"/>
+    <link rel="stylesheet" href="~/lib/sweetalert2/dist/sweetalert2.min.css" />
 
 </head>
 <body>
@@ -23,32 +23,55 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
+
+                       @* <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Página Inicial</a>
-                        </li>
+                        </li>*@
+                        
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Contato" asp-action="Index">Contatos</a>
-                        </li>
-                        <li class="nav-item">
+                            
                             <a class="nav-link text-dark" style="background-color:aqua" asp-area="" asp-controller="Cadastrar" asp-action="Index">Cadastrar Usuário</a>
+                            
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link text-dark" style="background-color:aqua" asp-area="" asp-controller="Usuarios" asp-action="Index">Listar Usuários</a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link text-dark" style="background-color:lightyellow" asp-area="" asp-controller="CadastrarSkill" asp-action="Index">Cadastrar Skill</a>
+                            <a class="nav-link text-dark" style="background-color:yellow" asp-area="" asp-controller="CadastrarSkill" asp-action="Index">Cadastrar Skill<span class="caret"></span></a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link text-dark" style="background-color:lightyellow" asp-area="" asp-controller="Skills" asp-action="Index">Listar Skill</a>
+                            <a class="nav-link text-dark" style="background-color:yellow" asp-area="" asp-controller="Skills" asp-action="Index">Listar Skill</a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link text-dark" style="background-color:lightcoral" asp-area="" asp-controller="CadastrarFuncionario" asp-action="Index">Cadastrar Funcionário</a>
+                            <a class="nav-link text-dark" style="background-color:aqua" asp-area="" asp-controller="CadastrarFuncionario" asp-action="Index">Cadastrar Funcionário<span class="caret"></span></a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link text-dark" style="background-color:lightcoral" asp-area="" asp-controller="Funcionarios" asp-action="Index">Listar Funcionários</a>
+                            <a class="nav-link text-dark" style="background-color:aqua" asp-area="" asp-controller="Funcionarios" asp-action="Index">Listar Funcionários</a>
+                        </li>
+
+                         <li class="nav-item">
+                            <a class="nav-link text-dark" style="background-color:yellow" asp-area="" asp-controller="SkillsFuncionarios" asp-action="Index">Incluir Skills nos Funcionários</a>
+                        </li>
+
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="Login/Logout">Logout</a>       
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Contato" asp-action="Index">Contato</a>
                         </li>
                     </ul>
+
                 </div>
             </div>
         </nav>

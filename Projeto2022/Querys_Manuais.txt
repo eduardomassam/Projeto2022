@@ -3,7 +3,6 @@
 create table Skills(
 skillId int primary key not null identity,
 nomeSkill varchar(50) not null,
-controlaSkill int not null
 )
 
 create table Senioridade(
@@ -53,4 +52,7 @@ create user usuario from login usuario;
 exec sp_addrolemember 'DB_DATAREADER','usuario';
 exec sp_addrolemember 'DB_DATAWRITER','usuario';
 
-insert into Usuarios values ('usuario1','senha1','Eduardo','',0)
+insert into Senioridade values('Junior')
+insert into Senioridade values('Pleno')
+insert into Senioridade values('Senior')
+insert into Senioridade values('Consultor')
