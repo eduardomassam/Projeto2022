@@ -40,6 +40,10 @@
 
 </div><br /><br />
 
-  <button type="submit" class="btn btn-primary">Cadastrar</button>
+    @if (@User.IsInRole("1"))
+    {
+    <button type="submit" class="btn btn-primary">Cadastrar</button>
+        
+    }
 
 </form>

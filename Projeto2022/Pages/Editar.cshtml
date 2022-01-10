@@ -31,7 +31,9 @@
 <span asp-validation-for="Remember"></span>
 
 </div><br /><br />
-
-  <button type="submit" class="btn btn-primary">Atualizar</button>
+    @if (@User.IsInRole("1"))
+    {
+    <button type="submit" class="btn btn-primary">Atualizar</button>       
+    }
 
 </form>

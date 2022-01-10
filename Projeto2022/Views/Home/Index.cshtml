@@ -5,4 +5,16 @@
 <div class="text-center">
     <h1 class="display-4">Bem vindo!</h1>
     <p>Sistema de controle de Funcionários e Skills</p>
+    <h1>Logado no perfil @User.Identity.Name  </h1>
+
+    @if (@User.IsInRole("1"))
+    {
+        <h2>Seu Perfil é Admin</h2>
+
+    }
+    else
+    {
+        <h2>Seu Perfil não é admin</h2>
+    }
+
 </div>

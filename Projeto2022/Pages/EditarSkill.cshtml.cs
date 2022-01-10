@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
@@ -6,6 +7,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Projeto2022.Pages
 {
+    [Authorize(Roles = "1")]
+
     public class EditarSkillModel : PageModel
     {
    
@@ -98,6 +101,7 @@ namespace Projeto2022.Pages
             await conexao.OpenAsync();
 
             SqlCommand cmd = conexao.CreateCommand();
+
             cmd.CommandText = $"DELETE FROM Skills WHERE SkillID = {Id}";
 
             await cmd.ExecuteReaderAsync();      

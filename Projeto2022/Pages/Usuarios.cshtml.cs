@@ -1,9 +1,12 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
 
 namespace Projeto2022.Pages
 {
+    [Authorize(Roles = "1")]
+
     public class UsuariosModel : PageModel
     {
         public List<UsuarioViewModel> Usuarios { get; set; }

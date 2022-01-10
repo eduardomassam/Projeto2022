@@ -1,11 +1,15 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
 using Projeto.Models;
 using System.ComponentModel.DataAnnotations;
+using System.Security.Claims;
 
 namespace Projeto2022.Pages
 {
+
+    [Authorize(Roles = "1")]
     public class CadastrarSkillModel : PageModel
     {
         [Required(AllowEmptyStrings = false, ErrorMessage = "Esse campo de é de preechimento obrigatório")]
@@ -14,8 +18,11 @@ namespace Projeto2022.Pages
         public string Nome { get; set; }
         public List<Skill> Skills { get; set; }
 
+      
+
         public void OnGet()
         {
+ 
         }
 
         public async Task<IActionResult> OnPostAsync()

@@ -1,16 +1,23 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
+using System.Security.Claims;
 
 namespace Projeto2022.Pages
 {
+    [Authorize(Roles = "1")]
+
     public class SkillsModel : PageModel
     {
 
         public List<SkillViewModel> Skills { get; set; }
         public async Task OnGet()
         {
+
+       
             SqlConnection conexao = new SqlConnection("server=localhost;database=mySkill;uid=usuario;password=senha");
+
             await conexao.OpenAsync();
 
             SqlCommand cmd = conexao.CreateCommand();

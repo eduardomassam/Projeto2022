@@ -27,14 +27,18 @@
                     <td>@usuario.DasID</td>
                     <td>@usuario.Qualidades</td>
                     <td>@usuario.Defeitos</td>
-               
+
 
                     <td>
-                        <a asp-page="/EditarFuncionario" asp-route-Id="@usuario.Id" class="btn btn-warning">Editar</a>
-                        <a asp-page="/EditarFuncionario" asp-page-handler="Apagar" asp-route-Id="@usuario.Id" class="btn btn-danger" method="get" data-ajax="true" data-ajax-method="get"
-    data-ajax-success="Sucesso" data-ajax-failure="Falha">Remover</a>
+                        @if (@User.IsInRole("1"))
+                        {
+                            <a asp-page="/EditarFuncionario" asp-route-Id="@usuario.Id" class="btn btn-warning">Editar</a>
+                            <a asp-page="/EditarFuncionario" asp-page-handler="Apagar" asp-route-Id="@usuario.Id" class="btn btn-danger" method="get" data-ajax="true" data-ajax-method="get"
+                   data-ajax-success="Sucesso" data-ajax-failure="Falha">Remover</a>
+                        }
+
                         <a asp-page="/CadastrarSkillFuncionario" asp-route-Id="@usuario.Id" class="btn btn-warning">Incluir Skills</a>
-                        
+
                     </td>
                 </tr>
             }

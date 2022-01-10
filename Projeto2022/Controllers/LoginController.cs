@@ -12,10 +12,10 @@ namespace Projeto2022.Controllers
         {
             if(User.Identity.IsAuthenticated)
             {
-                //return Json(new { Msg = "Usuário já logado" });
+                return RedirectToAction("Index", "Home");
             }
+
             return View();
-            
         }
 
 
@@ -38,12 +38,14 @@ namespace Projeto2022.Controllers
             {
                 int usuarioId = reader.GetInt32(0);
                 string nome = reader.GetString(1);
-                
+                int controlaAcesso = reader.GetInt32(5);              
 
                 List<Claim> direitosAcesso = new List<Claim>
                 {
                     new Claim(ClaimTypes.NameIdentifier,usuarioId.ToString()),
-                    new Claim(ClaimTypes.Name,nome)
+                    new Claim(ClaimTypes.Name,nome),
+                    new Claim(ClaimTypes.Role,controlaAcesso.ToString())
+
                 };
 
                 var identity = new ClaimsIdentity(direitosAcesso,"Identity.Login");
@@ -55,7 +57,7 @@ namespace Projeto2022.Controllers
                         IsPersistent = manterlogado,
                         ExpiresUtc = DateTime.Now.AddDays(1)
                     }) ;
-      
+        
                 return Json(new { logado = "Usuário logado com sucesso" });
             }
 

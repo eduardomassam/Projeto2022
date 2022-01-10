@@ -1,4 +1,5 @@
 ﻿
+
 function Falha() {
     Swal.fire(
         'Falha',
@@ -99,6 +100,16 @@ function Sucesso(data) {
         });
     }
 
+    if (data.semacesso) {
+        Swal.fire(
+            'Erro!',
+            data.semacesso,
+            'error'
+        ).then(function () {
+            window.location = "Skills";
+        });
+    }
+
     if (data.naologado) {
 
         Swal.fire(
@@ -108,10 +119,27 @@ function Sucesso(data) {
         );
     }
 
-    if (data.logado) {
+    if (data.favorlogar) {
 
-        window.location.href = "Home"
-       
+        Swal.fire(
+            'Olá!',
+            data.favorlogar,
+            'success'
+
+        );
+    }
+
+    
+
+
+    if (data.logado) {
+        Swal.fire(
+            'Sucesso!',
+            data.logado,
+            'success'
+        ).then(function () {
+            window.location = "Home";
+        });
     }
  
 }
