@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
 using Projeto.Models;
 using System.ComponentModel.DataAnnotations;
@@ -17,23 +18,64 @@ namespace Projeto2022.Pages
         [BindProperty(SupportsGet = true)]
         public string Nome { get; set; }
         public List<Skill> Skills { get; set; }
+        public List<SelectListItem> Skills1 { get; set; }
 
-      
 
-        public void OnGet()
+
+
+        public async Task OnGet()
         {
- 
+
+         
+            SqlConnection conexao2 = new SqlConnection("server=localhost;database=mySkill;uid=usuario;password=senha;");
+            await conexao2.OpenAsync();
+
+            SqlCommand cmd2 = conexao2.CreateCommand();
+
+            cmd2.CommandText = $"SELECT * from Skills";
+
+            SqlDataReader reader2 = cmd2.ExecuteReader();
+
+            
+
+
+            Skills1 = new List<SelectListItem>();
+
+            //Enquanto tiver algo para ser lido
+            while (await reader2.ReadAsync())
+            {
+                Skills1.Add(new SelectListItem
+                {
+                    Value = reader2.GetInt32(0).ToString(),
+                    Text = reader2.GetString(1),
+                });
+
+            }
+            
+
+            TempData["MySkills"] = Skills1;
+
+            await conexao2.CloseAsync();
+
+
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
+
+            
             SqlConnection conexao = new SqlConnection("server=localhost;database=mySkill;uid=usuario;password=senha;");
+
             await conexao.OpenAsync();
 
             SqlCommand cmd = conexao.CreateCommand();
+
+
+
             cmd.CommandText = $"SELECT * from Skills";
 
             SqlDataReader reader = cmd.ExecuteReader();
+
 
             if (String.IsNullOrEmpty(Nome))
             {
@@ -55,6 +97,7 @@ namespace Projeto2022.Pages
 
             }
 
+          
             foreach (var Skill in Skills)
             {
 

@@ -2,4 +2,60 @@
 @model Projeto2022.Pages.SkillsFuncionariosModel
 @{
 }
-<h1>Implementar a lista de skills no funcionario</h1>
+    
+
+    @if (Model.SkillsFuncionarios.Any())
+{
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+            
+                <th>Skill</th>
+                <th>Senioridade</th>
+            </tr>
+        </thead>
+        <tbody>
+                 
+            @foreach (var usuario in Model.SkillsFuncionarios)
+            {
+                if(Model.EmployeeId == Model.Id)
+                {
+                   <tr>
+                    
+                    <td>@usuario.SkillNameFK</td>
+                   @if(usuario.SenioridadeId==1)
+                    {
+                       <td>Junior</td>
+                    }
+                    else if(usuario.SenioridadeId==2)
+                    {
+                       <td>Pleno</td>
+                    }
+                   else if(usuario.SenioridadeId==3)
+                    {
+                       <td>Senior</td>
+                    }
+                     else if(usuario.SenioridadeId==4)
+                    {
+                       <td>Consultor</td>
+                    }
+                                       
+                    <td>
+                       
+                           
+                            <a asp-page="/EditarSkillFuncionario" asp-page-handler="Apagar" asp-route-Id="@usuario.EmployeeID" asp-route-SkillId="@usuario.SkillID" asp-route-EmployeeId="@usuario.EmployeeIDFK" class="btn btn-danger" method="get" data-ajax="true" data-ajax-method="get"
+                   data-ajax-success="Sucesso" data-ajax-failure="Falha">Remover</a>
+                        
+
+                    </td>
+                </tr>  
+                }
+               
+            }
+        </tbody>
+    </table>
+}
+else
+{
+        <h2 class="text-center">Nenhuma Skill encontrado</h2>
+}

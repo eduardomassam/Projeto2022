@@ -141,5 +141,27 @@ function Sucesso(data) {
             window.location = "Home";
         });
     }
+
+    if (data.cadastrofuncionarioskill) {
+        Swal.fire(
+            'Sucesso!',
+            data.cadastrofuncionarioskill,
+            'success'
+        ).then(function () {
+            window.location = "Funcionarios";
+        });
+    }
+
+    if (data.removidoSkillFuncionario) {
+        Swal.fire(
+            'Sucesso!',
+            data.removidoSkillFuncionario,
+            'success'
+        ).then(function () {
+            window.location = "SkillsFuncionarios";
+        });
+    }
+
+    
  
 }

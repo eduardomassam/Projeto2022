@@ -6,11 +6,23 @@
 <form asp-page="/CadastrarSkill" method="post" data-ajax="true" data-ajax-method="post"
     data-ajax-success="Sucesso" data-ajax-failure="Falha">
 
+          <div>
+        <tr>
+            <td> Selecione a Skill: </td>
+            <td>
+                @Html.DropDownList("MySkills", (IEnumerable
+                <SelectListItem>)TempData["MySkills"])
+            </td>
+        </tr>
+    </div>
+
   <div class="mb-3">
     <label asp-for="Nome" class="form-label">Nome da nova Skill:</label>
     <input asp-for="Nome" class="form-control">
     <span asp-validation-for="Nome"></span>
   </div>
+  <br />
+
 
 <br /><br />
     @if (@User.IsInRole("1"))

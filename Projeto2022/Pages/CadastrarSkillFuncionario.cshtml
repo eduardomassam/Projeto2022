@@ -5,59 +5,64 @@
 
 
 
-<form asp-page="/CadastrarSkillsFuncionarios" method="post" method="post" data-ajax="true" data-ajax-method="post"
-    data-ajax-success="Sucesso" data-ajax-failure="Falha">
+<form asp-page="/CadastrarSkillFuncionario" method="post" data-ajax="true" data-ajax-method="post"
+      data-ajax-success="Sucesso" data-ajax-failure="Falha">
 
-    <h3>Cadastro de Skills no funcionario @Model.Nome</h3>
+    @*<label asp-for="Nome" class="form-label">Cadastro de Skill no @Model.Nome</label>*@
 
-   <div class="mb-3">
-    <label asp-for="tempExp" class="form-label">Aqui vai ter uma lista suspensa para selecionar a skill:</label>
-    <input asp-for="tempExp" class="form-control">
-    <span asp-validation-for="tempExp"></span>
-  </div>
+    <h3>Cadastro de Skills @Model.Nome </h3>
 
-    <div class="mb-3">
-    <label asp-for="tempExp" class="form-label">Aqui vai escolher a senioridade</label>
-    <input asp-for="tempExp" class="form-control">
-    <span asp-validation-for="tempExp"></span>
-  </div>
+  
+      <div>
+    <label asp-for="Id" class="form-label" hidden>@Model.Id</label>
+    <input asp-for="Id" class="form-control" type="hidden">
+       
 
-  <div class="mb-3">
-    <label asp-for="tempExp" class="form-label">Tempo de Experiência nessa Skill em anos:</label>
-    <input asp-for="tempExp" class="form-control">
-    <span asp-validation-for="tempExp"></span>
-  </div>
+    </div>
 
-  @*
-<div class="mb-3">
-    <label asp-for="DasID" class="form-label">Das ID:</label>
-    <input asp-for="DasID" class="form-control">
-    <span asp-validation-for="DasID"></span>
-  </div>
+          <div>
+        <tr>
+            <td> Selecione a Skill: </td>
+            <td>
+                @Html.DropDownList("MySkills", (IEnumerable
+                <SelectListItem>)TempData["MySkills"])
+            </td>
+        </tr>
+    </div>
 
-    <div class="mb-3">
-    <label asp-for="Email" class="form-label">Email do Funcionário:</label>
-    <input asp-for="Email" class="form-control">
+    <br />
 
-  </div>
+      <div>
+        <tr>
+            <td> Selecione a Senioridade: </td>
+            <td>
+                @Html.DropDownList("Senioridade", (IEnumerable
+                <SelectListItem>)TempData["Senioridade"])
+            </td>
+        </tr>
+    </div>
 
-  <div class="mb-3">
-    <label asp-for="Qualidades" class="form-label">Qualidades:</label>
-    <input asp-for="Qualidades" class="form-control">
-  </div>
+    <br />
+    <div>
+    <label asp-for="tempExp" class="form-label">Tempo de experiência em anos:</label>
+        <input asp-for="tempExp" class="form-control">
+        <span asp-validation-for="tempExp"></span>
+    </div>
 
-  <div class="mb-3">
-    <label asp-for="Defeitos" class="form-label">Defeitos:</label>
-    <input asp-for="Defeitos" class="form-control">
-  </div>
-  *@
-    
-
-<br /><br />
-    @if (@User.IsInRole("1"))
-    {
+        <br />
+    <div>
+    <label asp-for="observacoes" class="form-label">Observações (caso tenha):</label>
+        <input asp-for="observacoes" class="form-control">
         
-    }
+    </div>
+
+        <br />
+
+
+
+
+    <br /><br />
+
     <button type="submit" class="btn btn-primary">Cadastrar</button>
 
 </form>
