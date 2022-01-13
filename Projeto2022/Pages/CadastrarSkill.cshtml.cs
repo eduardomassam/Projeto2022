@@ -27,35 +27,35 @@ namespace Projeto2022.Pages
         {
 
          
-            SqlConnection conexao2 = new SqlConnection("server=localhost;database=mySkill;uid=usuario;password=senha;");
-            await conexao2.OpenAsync();
+            //SqlConnection conexao2 = new SqlConnection("server=localhost;database=mySkill;uid=usuario;password=senha;");
+            //await conexao2.OpenAsync();
 
-            SqlCommand cmd2 = conexao2.CreateCommand();
+            //SqlCommand cmd2 = conexao2.CreateCommand();
 
-            cmd2.CommandText = $"SELECT * from Skills";
+            //cmd2.CommandText = $"SELECT * from Skills";
 
-            SqlDataReader reader2 = cmd2.ExecuteReader();
+            //SqlDataReader reader2 = cmd2.ExecuteReader();
 
             
 
 
-            Skills1 = new List<SelectListItem>();
+            //Skills1 = new List<SelectListItem>();
 
-            //Enquanto tiver algo para ser lido
-            while (await reader2.ReadAsync())
-            {
-                Skills1.Add(new SelectListItem
-                {
-                    Value = reader2.GetInt32(0).ToString(),
-                    Text = reader2.GetString(1),
-                });
+            ////Enquanto tiver algo para ser lido
+            //while (await reader2.ReadAsync())
+            //{
+            //    Skills1.Add(new SelectListItem
+            //    {
+            //        Value = reader2.GetInt32(0).ToString(),
+            //        Text = reader2.GetString(1),
+            //    });
 
-            }
+            //}
             
 
-            TempData["MySkills"] = Skills1;
+            //TempData["MySkills"] = Skills1;
 
-            await conexao2.CloseAsync();
+            //await conexao2.CloseAsync();
 
 
         }
