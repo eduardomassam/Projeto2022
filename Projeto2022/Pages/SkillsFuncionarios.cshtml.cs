@@ -34,7 +34,7 @@ namespace Projeto2022.Pages
             await conexao.OpenAsync();
 
             SqlCommand cmd = conexao.CreateCommand();
-            cmd.CommandText = $"Select SkillsFuncionarios.* , Skills.*, Employees.EmployeeID, Employees.FullName From SkillsFuncionarios Inner join Skills on Skills.SkillID = SkillsFuncionarios.SkillID inner join Employees on Employees.EmployeeID = SkillsFuncionarios.EmployeeID";
+            cmd.CommandText = $"Select SkillsFuncionarios.* , Skills.*, Employees.EmployeeID, Employees.FullName From SkillsFuncionarios Inner join Skills on Skills.SkillID = SkillsFuncionarios.SkillID inner join Employees on Employees.EmployeeID = SkillsFuncionarios.EmployeeID where Employees.EmployeeID = {Id}";
 
             SqlDataReader reader = cmd.ExecuteReader();
 

@@ -119,6 +119,14 @@ function Sucesso(data) {
         );
     }
 
+    if (data.funcrepetido) {
+        Swal.fire(
+            'Erro',
+            data.funcrepetido,
+            'error'
+        );
+    }
+
     if (data.favorlogar) {
 
         Swal.fire(
@@ -152,13 +160,13 @@ function Sucesso(data) {
         });
     }
 
-    if (data.removidoSkillFuncionario) {
+    if (data.removidoSkillFuncionario, data.teste) {
         Swal.fire(
             'Sucesso!',
             data.removidoSkillFuncionario,
             'success'
         ).then(function () {
-            window.location = "SkillsFuncionarios";
+            window.location = "SkillsFuncionarios?id="+data.teste;
         });
     }
 

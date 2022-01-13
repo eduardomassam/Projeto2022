@@ -14,7 +14,7 @@
                 <th>Email</th>
                 <th>Qualidades</th>
                 <th>Defeitos</th>
-                <th></th>
+                <th>Opção</th>
             </tr>
         </thead>
         <tbody>
@@ -37,7 +37,7 @@
                    data-ajax-success="Sucesso" data-ajax-failure="Falha">Remover</a>
                         }
 
-                        <a asp-page="/CadastrarSkillFuncionario" asp-route-Id="@usuario.Id" class="btn btn-warning">Incluir Skills</a>
+                        <a asp-page="/CadastrarSkillFuncionario" asp-route-Id="@usuario.Id"  class="btn btn-warning">Incluir Skills</a>
                         <a asp-page="/SkillsFuncionarios" asp-route-Id="@usuario.Id" class="btn btn-warning">Ver Skills</a>
 
 

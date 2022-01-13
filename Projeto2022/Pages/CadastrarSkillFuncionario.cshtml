@@ -13,6 +13,16 @@
     <h3>Cadastro de Skills @Model.Nome </h3>
 
   
+@*          <div>
+        <tr>
+            <td> Editando o Funcionário: </td>
+            <td>
+                @Html.DropDownList("IDNOVO", (IEnumerable
+                <SelectListItem>)TempData["IDNOVO"])
+            </td>
+        </tr>
+    </div>*@
+
       <div>
     <label asp-for="Id" class="form-label" hidden>@Model.Id</label>
     <input asp-for="Id" class="form-control" type="hidden">

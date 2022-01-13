@@ -31,6 +31,9 @@ namespace Projeto2022.Pages
         [BindProperty(SupportsGet = true)]
         public int EmployeeId { get; set; }
 
+        public List<SelectListItem> IDNOVO { get; set; }
+
+
         public List<SelectListItem> Skills { get; set; }
         public List<SelectListItem> Senioridade { get; set; }
         public List<SkillsFuncionario> SkillNoFuncionario { get; set; }
@@ -88,18 +91,63 @@ namespace Projeto2022.Pages
             await conexao.CloseAsync();
         }
 
+        //async Task RecebeIdFuncionario()
+        //{
+        //    SqlConnection conexao = new SqlConnection("server=localhost;database=mySkill;uid=usuario;password=senha");
+        //    await conexao.OpenAsync();
+        //    SqlCommand cmd = conexao.CreateCommand();
+        //    cmd.CommandText = $"SELECT * from Employees where EmployeeID = {Id}";
+        //    SqlDataReader reader = cmd.ExecuteReader();
+
+        //    //Iniciando a lista como empty
+        //    IDNOVO = new List<SelectListItem>();
+
+        //    //Enquanto tiver algo para ser lido
+        //    while (await reader.ReadAsync())
+        //    {
+        //        IDNOVO.Add(new SelectListItem
+        //        {
+        //            Value = reader.GetInt32(0).ToString(),
+        //            Text = reader.GetString(1),
+        //        });
+        //    }
+        //    TempData["IDNOVO"] = IDNOVO;
+
+
+
+        //    await conexao.CloseAsync();
+
+        //}
+
+        async Task<bool> RecebeIdFuncionario(string MySkills)
+        {
+            SqlConnection conexao = new SqlConnection("server=localhost;database=mySkill;uid=usuario;password=senha");
+            await conexao.OpenAsync();
+            SqlCommand cmd = conexao.CreateCommand();
+            int t=0;
+            cmd.CommandText = $"SELECT * from SkillsFuncionarios where EmployeeID = {Id} and SkillID = {MySkills}";
+            SqlDataReader reader = cmd.ExecuteReader();
+            if (await reader.ReadAsync())
+            {               
+                t = reader.GetInt32(0);
+            }
+            if(t>=1)
+            {
+                return true;
+            }
+            return false;
+        }
 
         public async Task OnGet()
         {
             await RecebeSkillId();
             await RecebeSenioridadeId();
-
-
+            //await RecebeIdFuncionario();
         }
 
 
 
-        public async Task<IActionResult> OnPostAsync(string MySkills, string Senioridade)
+        public async Task<IActionResult> OnPostAsync(string MySkills, string Senioridade, string IDNOVO)
         {
 
 
@@ -111,7 +159,7 @@ namespace Projeto2022.Pages
             SqlDataReader reader = cmd.ExecuteReader();
 
 
-
+            
 
 
             if (String.IsNullOrEmpty(tempExp))
@@ -143,26 +191,41 @@ namespace Projeto2022.Pages
 
 
 
-            foreach (var Skill in SkillNoFuncionario)
-            {
+            //foreach (var Skill in SkillNoFuncionario)
+            //{
 
-                var isExisteTec = Skill.fk_idSkill.Equals(Skill.idSkillFuncionario);
-                if (isExisteTec)
-                {
-                    await conexao.CloseAsync();
-                    return new JsonResult(new { repetido = "Técnologia já existe, portanto nada foi cadastrado" });
-                }
+            //    var isExisteID = Id.Equals(IDNOVO);
+            //    var isExisteTec = Skill.Equals(Skill.fk_idSkill);
 
-            }
+            //    if (isExisteTec && isExisteID)
+            //    {
+            //        await conexao.CloseAsync();
+            //        return new JsonResult(new { repetido = "Técnologia já existe nesse funcionário, portanto nada foi cadastrado" });
+            //    }
+
+            //}
+
             await conexao.CloseAsync();
             await conexao.OpenAsync();
 
-            cmd.CommandText = $"INSERT INTO SkillsFuncionarios (tempExp,observacoes,SkillID,EmployeeID,SenioridadeId) VALUES ('{tempExp}' , '{observacoes}' , '{MySkills}' , '{Id}' , '{Senioridade}')";
+            var variavel = await RecebeIdFuncionario(MySkills);
+            if (variavel)
+            {
+                return new JsonResult(new { funcrepetido = "Tecnologia já existe nesse funcionario" });
 
-            await cmd.ExecuteReaderAsync();
-            await conexao.CloseAsync();
+            }
+            else
+            {
+                cmd.CommandText = $"INSERT INTO SkillsFuncionarios (tempExp,observacoes,SkillID,EmployeeID,SenioridadeId) VALUES ('{tempExp}' , '{observacoes}' , '{MySkills}' , '{Id}' , '{Senioridade}')";
+                await cmd.ExecuteReaderAsync();
+                await conexao.CloseAsync();
+                return new JsonResult(new { cadastrofuncionarioskill = "Skill cadastrada com sucesso nesse Funcionário" });
 
-            return new JsonResult(new { cadastrofuncionarioskill = "Skill cadastrada com sucesso nesse Funcionário" });
+            }
+
+
+
+            return new JsonResult(new { errodecadastro = "Erro desconhecido, favor verificar todos os campos" });
 
         }
 

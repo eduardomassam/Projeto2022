@@ -56,8 +56,8 @@ namespace Projeto2022.Pages
             cmd.CommandText = $"DELETE FROM SkillsFuncionarios WHERE EmployeeID = {Id} and SkillID = {SkillId}";
 
             await cmd.ExecuteReaderAsync();
-
-            return new JsonResult(new { removidoSkillFuncionario = "Tecnologia Removida com sucesso" });
+          
+            return new JsonResult(new { removidoSkillFuncionario = "Tecnologia Removida com sucesso", teste=Id });
         }
     }
 }

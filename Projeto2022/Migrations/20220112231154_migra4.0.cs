@@ -4,7 +4,7 @@
 
 namespace Projeto2022.Migrations
 {
-    public partial class Migra30 : Migration
+    public partial class migra40 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
